@@ -1,4 +1,4 @@
 FROM busybox:latest
 MAINTAINER Mohamed Tleis <mohamedtleis at gmail dot com>
-RUN mkdir /mysql_data && mkdir /wp_data
-VOLUME ["/mysql_data", "/wp_data"]
+RUN mkdir -p /var/lib/mysql && mkdir -p /var/www/html
+VOLUME ["/var/lib/mysql", "/var/www/html"]
