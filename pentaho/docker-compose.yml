@@ -1,0 +1,27 @@
+pentaho:
+        image:  mtleis/pentaho:v2.0
+        links:
+                - postgres:postgres
+        ports:
+                - "8081:8080"       
+                - "8444:8443" 
+        volumes_from:
+                - pentahodata
+        environment:
+                - VIRTUAL_HOST=pentaho.tleis.nl
+        volumes:
+                - /etc/letsencrypt:/etc/letsencrypt
+
+postgres:
+        image:  postgres
+        ports:
+                - "5432:5432"
+        volumes_from:
+                - pentahodata
+        environment:
+                - POSTGRES_PASSWORD=myrootpassword
+
+pentahodata:
+        image: mtleis/pentaho-data
+        command: tail -f /dev/null
+
